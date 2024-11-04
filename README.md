@@ -32,8 +32,7 @@ To get started with AIxploit, follow these steps:
    ```bash
    touch .env
    OPENAI_KEY="sk-xxxxx"
-OLLAMA_URL="hxxp:"
-
+   OLLAMA_URL="hxxp:"
    ```
 
 
