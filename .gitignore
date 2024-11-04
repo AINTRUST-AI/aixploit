@@ -7,10 +7,10 @@ Thumbs.db
 *.local
 
 # Virtual Environment
-.venv/  # {{ edit_1 }}
+.venv  # {{ edit_1 }}
 
 # Egg Info Directories
-*.egg-info/  # {{ edit_2 }}
+*.egg-info  # {{ edit_2 }}
 
 # Dependency Directories
 node_modules/
