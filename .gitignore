@@ -1,0 +1,38 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Environment Files
+.env
+*.local
+
+# Virtual Environment
+.venv/  # {{ edit_1 }}
+
+# Egg Info Directories
+*.egg-info/  # {{ edit_2 }}
+
+# Dependency Directories
+node_modules/
+vendor/
+__pycache__/
+
+# Build Directories
+dist/
+build/
+out/
+
+# IDE/Editor Specific Files
+.idea/
+.vscode/
+*.sublime-project
+
+# Log Files
+*.log
+
+# Test Output
+coverage/
+
+# Temporary Files
+*.tmp
+*.bak
