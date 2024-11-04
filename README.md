@@ -45,11 +45,12 @@ To get started with AIxploit, follow these steps:
 
 To use AIxploit, follow these steps:
 
-1. Check the plugins folder to see the available attacks.
+1. Check the plugins folder to see the available attackers.
 
-2. Choose an attack and modify the payloads in the payloads folder.
+2. Choose an attacker (or multiple attackers) and update the attackers list in test/test.py.
+3. Choose an endpoint to attack.
 
-3. Run the attack with the command:
+4. Run the attack with the command:
    ```bash
    python test/test.py
    ```
