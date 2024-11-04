@@ -1,4 +1,4 @@
-#!/Users/aymen/Documents/VisualStudio/AInTrust/BackEnd/aixploit/.venv/bin/python
+#!/Users/aymen/Documents/VisualStudio/AInTrust/BackEnd/aixploit/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

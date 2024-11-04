@@ -22,6 +22,3 @@ attackers = [
 run(attackers, "Openai", "", "gpt-3.5-turbo", openai_key, False)
 
 
-
-
-

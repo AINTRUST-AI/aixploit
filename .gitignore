@@ -12,6 +12,7 @@ Thumbs.db
 # Egg Info Directories
 *.egg-info  # {{ edit_2 }}
 
+attack_responses/scanoutput.txt
 # Dependency Directories
 node_modules/
 vendor/
