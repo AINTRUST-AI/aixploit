@@ -7,10 +7,12 @@ Thumbs.db
 *.local
 
 # Virtual Environment
-.venv  # {{ edit_1 }}
+.venv
+.venv/
 
 # Egg Info Directories
-*.egg-info  # {{ edit_2 }}
+*.egg-info
+*.egg-info/
 
 attack_responses/scanoutput.txt
 # Dependency Directories
