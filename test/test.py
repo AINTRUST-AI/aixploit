@@ -18,7 +18,7 @@ attackers = [
     PromptInjector(user_prompt, payload_list, "file"),
     ]
 
-#run(attackers, "Ollama", ollama_url, "mistral", "ollama", False)
-run(attackers, "Openai", "", "gpt-3.5-turbo", openai_key, False)
+run(attackers, "Ollama", ollama_url, "mistral", "ollama", False)
+#run(attackers, "Openai", "", "gpt-3.5-turbo", openai_key, False)
 
 

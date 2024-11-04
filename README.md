@@ -28,7 +28,16 @@ To get started with AIxploit, follow these steps:
      .venv\Scripts\activate
      ```
 
-4. **Install the required dependencies:**
+4. **Add local variables:**
+   ```bash
+   touch .env
+   OPENAI_KEY="sk-xxxxx"
+OLLAMA_URL="hxxp:"
+
+   ```
+
+
+5. **Install the required dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
