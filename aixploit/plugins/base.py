@@ -7,7 +7,8 @@ class Attacker(Protocol):
  """
 
     @abc.abstractmethod
-    def run(self, provider: str, url: str, model: str, api_key: str) -> tuple[str, bool, float]:
+    def run(self, target: list[str], api_key: str) -> tuple[str, bool, float]:
+        provider, url, model = target  # Unpack the list into variables
         """
         Run an attack according to the specific plugin's implementation.
 
@@ -22,3 +23,12 @@ class Attacker(Protocol):
             bool: A flag indicating whether the prompt is valid or not.
             float: Risk score where 0 means no risk and 1 means high risk.
         """
+
+class Target:
+    def __init__(self, name: str, url: str, model: str):
+        self.name = name
+        self.url = url
+        self.model = model
+
+    def __repr__(self):
+        return f"Target(name={self.name}, url={self.url}, model={self.model})"

@@ -27,11 +27,8 @@ LOGGER = logging.getLogger(__name__)  # Create a logger for this module
 
 def run(
     attackers: List[RedTeamAttacker],  # Change list to List
-    provider: str,
-    url: str,
-    model: str,
+    target: list[str],
     api_key: str,
-    fail_fast: bool = False
 ) -> tuple[str, dict[str, bool], dict[str, float]]:
  
     """
@@ -69,7 +66,7 @@ def run(
         elapsed_time_attacker = 0  # Initialize the variable
         
         if hasattr(attacker, 'run'):
-            attack_prompt,is_valid, success_rate = attacker.run(provider,url,model,api_key)
+            attack_prompt,is_valid, success_rate = attacker.run(target,api_key)
             attack_prompts.append(attack_prompt)
             attack_prompts_list.append(attack_prompt)
             success_rates.append(success_rate)
@@ -92,7 +89,7 @@ def run(
         attacker_name = type(attacker).__name__  # Get the name of the attacker class
         #LOGGER.info("Attack completed %s succeeded by %s: on provider: %s in %.6f seconds, with a success rate of %s ", len(success_rates),attacker_name, provider , round(elapsed_time_attacker, 6), success_rates_percentage)
         
-        if fail_fast and not is_valid:
+        if  not is_valid:
             break
     
     # Convert success rates to percentage format    

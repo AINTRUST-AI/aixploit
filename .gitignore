@@ -5,11 +5,12 @@ Thumbs.db
 # Environment Files
 .env
 *.local
+*.txt
 
 # Virtual Environment
 .venv
 .venv/
-
+/V0
 # Egg Info Directories
 *.egg-info
 *.egg-info/

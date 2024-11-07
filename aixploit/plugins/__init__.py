@@ -1,6 +1,6 @@
 """Plugins init"""
 
-from .integrity.DirectPromptInjection import PromptInjectorStandalone, SinglePromptInjectorStandalone, PromptInjector, SinglePromptInjector
+from .integrity.DirectPromptInjection import PromptInjection
 from .integrity.IndirectPromptInjection import IndirectPromptInjector, SingleIndirectPromptInjector
 from .integrity.Language import LanguageInjector, SingleLanguageInjector
 from .integrity.Code import CodeInjector, SingleCodeInjector
@@ -13,10 +13,8 @@ from .privacy.PII import PIIInjector, SinglePIIInjector, PIIExtractor, SinglePII
 from .privacy.SensitiveData import SensitiveDataInjector, SingleSensitiveDataInjector, SensitiveDataExtractor, SingleSensitiveDataExtractor
 
 __all__ = [
-    "PromptInjector",
-    "SinglePromptInjector",
-    "PromptInjectorStandalone",
-    "SinglePromptInjectorStandalone",
+    "PromptInjection",
+
     "IndirectPromptInjector",
     "SingleIndirectPromptInjector",
     "CompetitorInjector",
