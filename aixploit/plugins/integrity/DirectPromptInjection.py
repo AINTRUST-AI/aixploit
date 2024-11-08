@@ -2,6 +2,7 @@ import os, sys
 import logging
 from ..base import Attacker
 import yaml
+import uuid  # Import the uuid module
 from datetime import datetime  # Make sure to import datetime at the top of your file
 
 from ...instrumentalize.ollama import prompt_ollama
@@ -99,9 +100,10 @@ class PromptInjection(Attacker):
             self.results.append((prompt, response))
         success_rate = successful_prompts / total_prompts if total_prompts > 0 else 0.0
 
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")  # Format: YYYYMMDD_HHMMSS
-        filename = f'attack_responses/integrity/DirectPromptInjection/scanoutput_{timestamp}.txt'
-
+        timestamp = datetime.now().strftime("%Y%m%d")  # Format: YYYYMMDD_HHMMSS
+        scan_id = str(uuid.uuid4())  # Generate a random UUID and convert it to a string
+        filename = f'attack_responses/integrity/DirectPromptInjection/{timestamp}_{scan_id}.txt'
+        
         with open(filename, 'a') as output_file:  # Use the new filename with timestamp # {{ edit_4 }}
                 # Process results (e.g., log or analyze)
             for prompt, response in self.results:  # {{ edit_5 }}
