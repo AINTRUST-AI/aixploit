@@ -22,7 +22,8 @@ class PromptInjection(Attacker):
     """
 
     def __init__(self, scan_type: str):  # {{ edit_1 }}
-        self.results = [] # Initialize results# Store the payload source  
+        self.results = [] # Initialize results
+        self.malicious_prompts = []  # Store the successfull promptinjection source  
         self.scan_type = scan_type # 'file' or 'db'
        
 
@@ -34,11 +35,20 @@ class PromptInjection(Attacker):
                 with open(source, 'r') as file:
                     data = yaml.safe_load(file)
                 # Extract prompts and payloads
-                return [item.get('prompt', '') for item in data.get('prompt_injections', [])] # Join prompts into a single sentence
+                return [item.get('prompt', '') for item in data.get('prompt_injections', []) if 'prompt' in item] # Join prompts into a single sentence
             elif self.scan_type.lower() == 'full':
                 source = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')), 'attack_prompts/full_scan_payloads.yaml')
+                with open(source, 'r') as file:
+                    data = yaml.safe_load(file)
+                # Extract prompts and payloads
+                return [item.get('prompt', '') for item in data.get('prompt_injections', []) if 'prompt' in item] # Join prompts into a single sentence
             elif self.scan_type.lower() == 'custom':
                 source = os.path.join(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')), 'attack_prompts/custom_scan_payloads.yaml')
+                with open(source, 'r') as file:
+                    data = yaml.safe_load(file)
+                # Extract prompts and payloads
+                return [item.get('prompt', '') for item in data.get('prompt_injections', []) if 'prompt' in item] # Join prompts into a single sentence
+       
             elif self.scan_type.lower() == 'auto':
                 exit("Auto scan type is not supported yet, AI models are not yet implemented")
             else:
@@ -55,36 +65,36 @@ class PromptInjection(Attacker):
 
     def run(self, target: list[str], api_key: str) -> tuple[str, bool, float]:
         provider,url,model = target  # Unpack the list into variables
-        
+    
         attack_success = False
         provider = provider.strip()  # Ensure no leading/trailing spaces
         model = model.strip()  # Ensure no leading/trailing spaces
         api_key = api_key.strip()  # Ensure no leading/trailing spaces
         if url.strip() == "" and provider.lower() != "openai":
-            return url, True, -1.0
+            return "Url is empty", True, -1.0
         else:
             prompts = self.get_prompts()
+            if prompts is None or not isinstance(prompts, list):  # {{ edit_1 }}
+                LOGGER.error("Prompts list is not a valid list. Received: %s", prompts)  # Log the error
+                prompts = []  # Initialize to an empty list if not valid
             total_prompts = len(prompts)
             successful_prompts = 0  # Counter for successful prompts
   # {{ edit_3 }}
     # Pl
     # ay each prompt on the specified URL
         for prompt in (prompts):
-
              # Ensure no leading/trailing spaces
-
             provider_functions = {  # {{ edit_7 }}
                 "ollama": lambda: prompt_ollama(url, model, prompt, api_key),
                 "openai": lambda: prompt_openai(url, model, prompt, api_key )  # Ensure parameters are correct
             }
-
             # Get the response using the provider functions or handle unsupported API types
             try:
                 response = provider_functions.get(provider.lower(), lambda: "Default Unsupported API type")()  # Call the corresponding function or return default
                 #LOGGER.info(f"Calling provider with parameters: provider={provider}, model={model}, prompt={prompt}, api_key={api_key}")
- 
                 if attack_success:
                     successful_prompts += 1
+                    self.malicious_prompts.append((prompt, response))
                     #LOGGER.info("Attack succeded")
                 else:
                     #LOGGER.info("Attack failed")
@@ -110,4 +120,4 @@ class PromptInjection(Attacker):
                 output_file.write(f"prompt: {prompt}\nresponse: {response}\n@@@@@@@@@@@@@@@\n")  # Write to the file
         
         #LOGGER.info("Attack completed with a success rate of %s", success_rate)
-        return self.results, attack_success, success_rate
+        return self.results, self.malicious_prompts, success_rate

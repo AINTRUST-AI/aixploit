@@ -11,11 +11,13 @@ target2 = ["Openai", "", "gpt-3.5-turbo"]
 
 
 attackers = [
-    PromptInjection("quick")
+    PromptInjection("quick"),
+    PromptInjection("full")
     ]
 
 #run(attackers, target1, os.getenv("OLLAMA_API_KEY"))
 run(attackers, target2, os.getenv("OPENAI_KEY"))
+
 
 
 
