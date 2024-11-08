@@ -22,7 +22,10 @@ The 'run' function aggregates the results from all attacker instances, returning
 This design allows for extensibility, enabling the addition of new attacker types with varying strategies 
 for manipulating input data and assessing the security posture of LLMs.
 """
-logging.basicConfig(level=logging.INFO)  # Set the logging level
+
+logging.basicConfig(level=logging.INFO)  # Set the logging level for your module
+httpx_logger = logging.getLogger("httpx")  # Get the httpx logger
+httpx_logger.setLevel(logging.WARNING)  # Set the logging level to WARNING to hide it in INFO logs
 LOGGER = logging.getLogger(__name__)  # Create a logger for this module
 
 
@@ -50,47 +53,46 @@ def run(
             - A dictionary mapping scanner names to float values of risk scores, where 0 is no risk, and 1 is high risk.
     """
    
-    results_score = {}
-    # Initialize an empty list to store all attack prompts # Initialize an empty list to store all attack prompts
-    if len(attackers) == 0 :
-        return results_score
 
-    start_time = time.time()
+    # Initialize an empty list to store all attack prompts
+    if len(attackers) == 0 :
+        LOGGER.error(" No attackers provided")
+        return ("No attackers provided")
     
-    attack_prompts_full = []
-    malicious_prompts_full = [] # the list of prompts cleared after each attacker
+    start_time = time.time() # Start timer for the entire RedTeaming task
+    attack_prompts_full = [] # Initialize an empty list to store all conversations
+    successful_attack_prompts_full = [] # Initialize an empty list to store successfull malicious prompts
     
     for attacker in attackers:
-        success_rates = []  
-        start_time_attacker = time.time()
-        elapsed_time_attacker = 0  # Initialize the variable
+        success_rates = []  # Initialize an empty list to store success rates for each attacker
+        start_time_attacker = time.time() # Start timer for the current attacker
         
-        if hasattr(attacker, 'run'):
-            attack_prompts,malicious_prompts, success_rate = attacker.run(target,api_key)
-            attack_prompts_full.append(attack_prompts)
-            malicious_prompts_full.append(malicious_prompts)
-            success_rates.append(success_rate)
+        if hasattr(attacker, 'run'): # Check if the attacker has the 'run' method
+            attack_prompts,malicious_prompts, success_rate = attacker.run(target,api_key) # Run the attacker
+            attack_prompts_full.append(attack_prompts) # Append the conversation to the list
+            successful_attack_prompts_full.append(malicious_prompts) # Append the successfull malicious prompts to the list
+            success_rates.append(success_rate) # Append the success rate to the list
             # Calculate elapsed time for the current attacker
             elapsed_time_attacker = time.time() - start_time_attacker
         else:
-            LOGGER.error(f"{type(attacker).__name__} does not have the method 'run'")
+            LOGGER.error(f"{type(attacker).__name__} does not have the method 'run'") # Log an error if the attacker does not have the 'run' method
             continue  
          # Using str() to convert the dictionary to a string
        
-        if success_rates and len(attack_prompts[0])>0:  # Check if the list is not empty
-            average_success_rate = sum(success_rates) / len(attackers)  # Calculate average
-            success_rates_percentage = f"{average_success_rate * 100:.2f}%"  # Format as percentage
-        else:
-            success_rates_percentage = "0.00%"  # ntage
+    if success_rates and len(attack_prompts_full)>0:  # Check if the list is not empty and the success rates are not empty
+        average_success_rate = sum(success_rates) / len(attackers)  # Calculate average success rate
+        success_rates_percentage = f"{average_success_rate * 100:.2f}%"  # Format as percentage 
+    else:
+        success_rates_percentage = "0.00%"  # ntage
 
         #attacker_name = type(attacker).__name__  # Get the name of the attacker class
         #elapsed_time_attacker = time.time() - start_time_attacker
         #LOGGER.info("Conversation =%s, took place via %s  in an elapsed_time_seconds=%.6f", attack_prompts if attack_prompts else "No prompts", attacker_name, round(elapsed_time_attacker, 6)) 
         
-    elapsed_time = time.time() - start_time
-    total_prompts_number = sum(len(sublist) for sublist in attack_prompts_full)
+    #elapsed_time = time.time() - start_time
+    #total_prompts_number = sum(len(sublist) for sublist in attack_prompts_full)
  
 
-    LOGGER.info(" Total number of prompts: %s", total_prompts_number) 
-    LOGGER.info(" RedTeaming Task completed: %s attackers, prompts=%s, elapsed_time_seconds=%.6f, with a success rate of %s", len(attackers) , total_prompts_number    , round(elapsed_time, 6), success_rates_percentage)  # {{ edit_1 }}   # Clear the list of prompts after each attacker
-    return attack_prompts_full, malicious_prompts_full, success_rates_percentage
+    #LOGGER.info(" Total number of prompts: %s", total_prompts_number) 
+    #LOGGER.info(" RedTeaming Task completed: %s attackers, prompts=%s, elapsed_time_seconds=%.6f, with a success rate of %s", len(attackers) , total_prompts_number    , round(elapsed_time, 6), success_rates_percentage)  # {{ edit_1 }}   # Clear the list of prompts after each attacker
+    return attack_prompts_full, successful_attack_prompts_full, success_rates_percentage

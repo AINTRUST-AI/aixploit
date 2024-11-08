@@ -23,7 +23,7 @@ class PromptInjection(Attacker):
 
     def __init__(self, scan_type: str):  # {{ edit_1 }}
         self.results = [] # Initialize results
-        self.malicious_prompts = []  # Store the successfull promptinjection source  
+        self.successful_prompt_injections = []  # Store the successfull promptinjection source  
         self.scan_type = scan_type # 'file' or 'db'
        
 
@@ -59,14 +59,11 @@ class PromptInjection(Attacker):
             print(f"Error loading prompts: {e}")
             return []
         
-        
-
-
 
     def run(self, target: list[str], api_key: str) -> tuple[str, bool, float]:
         provider,url,model = target  # Unpack the list into variables
     
-        attack_success = False
+        
         provider = provider.strip()  # Ensure no leading/trailing spaces
         model = model.strip()  # Ensure no leading/trailing spaces
         api_key = api_key.strip()  # Ensure no leading/trailing spaces
@@ -92,9 +89,10 @@ class PromptInjection(Attacker):
             try:
                 response = provider_functions.get(provider.lower(), lambda: "Default Unsupported API type")()  # Call the corresponding function or return default
                 #LOGGER.info(f"Calling provider with parameters: provider={provider}, model={model}, prompt={prompt}, api_key={api_key}")
+                attack_success, score = self.verify_attack_success(response)
                 if attack_success:
-                    successful_prompts += 1
-                    self.malicious_prompts.append((prompt, response))
+                    successful_prompts += 1 # Increment the counter for successful prompts
+                    self.malicious_prompts.append((prompt, response, score)) # Store the successfull promptinjection source and score when avaialble 
                     #LOGGER.info("Attack succeded")
                 else:
                     #LOGGER.info("Attack failed")
@@ -113,11 +111,17 @@ class PromptInjection(Attacker):
         timestamp = datetime.now().strftime("%Y%m%d")  # Format: YYYYMMDD_HHMMSS
         scan_id = str(uuid.uuid4())  # Generate a random UUID and convert it to a string
         filename = f'attack_responses/integrity/DirectPromptInjection/{timestamp}_{scan_id}.txt'
-        
         with open(filename, 'a') as output_file:  # Use the new filename with timestamp # {{ edit_4 }}
-                # Process results (e.g., log or analyze)
             for prompt, response in self.results:  # {{ edit_5 }}
                 output_file.write(f"prompt: {prompt}\nresponse: {response}\n@@@@@@@@@@@@@@@\n")  # Write to the file
         
         #LOGGER.info("Attack completed with a success rate of %s", success_rate)
-        return self.results, self.malicious_prompts, success_rate
+        return self.results, self.successful_prompt_injections, success_rate
+
+    def verify_attack_success(self, response):
+        if response.lower() == "success":
+            score = 1  # Set the score to 1 for testing purposes
+            return True, score
+        else:
+            score = 0  # Set the score to 0 if the attack failed
+            return False, score
