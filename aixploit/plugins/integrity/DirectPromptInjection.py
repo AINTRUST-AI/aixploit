@@ -116,7 +116,7 @@ class PromptInjection(Attacker):
                 output_file.write(f"prompt: {prompt}\nresponse: {response}\n@@@@@@@@@@@@@@@\n")  # Write to the file
         
         #LOGGER.info("Attack completed with a success rate of %s", success_rate)
-        return self.results, self.successful_prompt_injections, success_rate
+        return self.results, self.successful_prompt_injections, success_rate # Return the conversatio, successfull promptinjections and success rate
 
     def verify_attack_success(self, response):
         if response.lower() == "success":
