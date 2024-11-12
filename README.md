@@ -4,7 +4,7 @@ AIxploit is a powerful tool designed for analyzing and exploiting vulnerabilitie
 This project aims to provide a comprehensive framework for testing the security and integrity of AI models.
 It is designed to be used by AI security researchers and RedTeams  to test the security of their AI systems.
 
-https://github.com/AINTRUST-AI/AIxploit/blob/22422779d6fa5be2324c4cf6cb8ea66ebd46f992/readme/aixploit_features.png
+![Alt text](https://github.com/AINTRUST-AI/AIxploit/blob/22422779d6fa5be2324c4cf6cb8ea66ebd46f992/readme/aixploit_features.png)
 
 ## Installation
 
