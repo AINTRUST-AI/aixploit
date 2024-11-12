@@ -1,6 +1,8 @@
 # AIxploit
 
-AIxploit is a powerful tool designed for analyzing and exploiting vulnerabilities in AI systems. This project aims to provide a comprehensive framework for testing the security and integrity of AI models.
+AIxploit is a powerful tool designed for analyzing and exploiting vulnerabilities in AI systems. 
+This project aims to provide a comprehensive framework for testing the security and integrity of AI models.
+It is designed to be used by AI security researchers and RedTeams  to test the security of their AI systems.
 
 
 ## Installation
@@ -33,6 +35,7 @@ To get started with AIxploit, follow these steps:
    touch .env
    OPENAI_KEY="sk-xxxxx"
    OLLAMA_URL="hxxp:"
+   OLLAMA_API_KEY="ollama"
    ```
 
 
@@ -45,15 +48,20 @@ To get started with AIxploit, follow these steps:
 
 To use AIxploit, follow these steps:
 
-1. Check the plugins folder to see the available attackers.
+0. Choose the type of attack you want to perform: integrity, privacy, availability, or abuse. 
+The full list of attackers is in the plugins folder.
 
-2. Choose an attacker (or multiple attackers) and update the attackers list in test/test.py.
-3. Choose an endpoint to attack.
+1. Choose a target: OpenAI, Ollama. More targets can be added easily.
+
+2. Update the .env file with the correct API keys and endpoints.
+
+3. Update the test/test.py file with the correct target and attackers.
 
 4. Run the attack with the command:
    ```bash
    python test/test.py
    ```
+5. The attack results will be returned automatically and the conversation will be stored in the attack_responses folder.
 
 ## Contributing
 
