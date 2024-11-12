@@ -1,6 +1,6 @@
-# AIxploit
+# aixploit
 
-AIxploit is a powerful tool designed for analyzing and exploiting vulnerabilities in AI systems. 
+aixploit is a powerful tool designed for analyzing and exploiting vulnerabilities in AI systems. 
 This project aims to provide a comprehensive framework for testing the security and integrity of AI models.
 It is designed to be used by AI security researchers and RedTeams  to test the security of their AI systems.
 
