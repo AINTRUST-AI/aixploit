@@ -1,8 +1,13 @@
 from setuptools import setup, find_packages
 
+
+packages = find_packages(include=['aixploit*'], exclude=['tests*'])
+
+# Print the discovered packages
+print("Discovered packages:", packages)
 setup(
     name='aixploit',
-    packages=find_packages(where='aixploit'),
+    packages=packages,
     description='An AI redTeaming Python library named Aixploit',
     author='aintrust',
     author_email='contact@aintrust.ai',
