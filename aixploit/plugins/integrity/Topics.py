@@ -1,1 +1,1 @@
-print("Topics is under development")
+print("Topics plugin is under development")

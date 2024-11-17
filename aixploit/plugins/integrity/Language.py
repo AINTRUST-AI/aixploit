@@ -1,1 +1,1 @@
-print("Language is under development")
+print("Language plugin is under development")

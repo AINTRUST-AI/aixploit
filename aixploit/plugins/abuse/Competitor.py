@@ -1,1 +1,1 @@
-print("Competitor is under development") 
+print("Competitor plugin is under development") 

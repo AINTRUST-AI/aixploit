@@ -1,1 +1,1 @@
-print("Code is under development")
+print("Code plugin is under development")

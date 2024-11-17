@@ -1,1 +1,1 @@
-print("Token Limit is under development") 
+print("Token Limit plugin is under development") 

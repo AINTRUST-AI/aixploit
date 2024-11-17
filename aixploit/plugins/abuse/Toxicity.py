@@ -1,1 +1,1 @@
-print("Toxicity is under development") 
+print("Toxicity plugin is under development") 

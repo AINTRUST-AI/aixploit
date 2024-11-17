@@ -2,7 +2,7 @@ import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))   # Automatically detect the current folder # Adjust this path as necessary
 from dotenv import load_dotenv
 load_dotenv()
-from aixploit.plugins import PromptInjection 
+from aixploit.plugins import PromptInjection
 from aixploit.core import run
 
 

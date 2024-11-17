@@ -1,1 +1,1 @@
-print("Indirect Prompt Injection is under development")
+print("Indirect Prompt Injection plugin is under development")
