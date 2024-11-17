@@ -1,18 +1,21 @@
-    [project]
-    name='aixploit',
-    version='1.0.1',
-    packages=find_packages(),
-    install_requires=[
-        'openai',
-        'logging' 
-    ],
-    description='An AI redTeaming Python library named Aixploit',
-    author='aintrust',
-    author_email='contact@aintrust.ai',
-    url='https://github.com/aintrustai-ai/aixploit',  # Update with your repository URL
-    classifiers=[
-        'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
-    ],
-    python_requires='>=3.6',
+[project]
+name = "aixploit"
+version = "1.0.2"
+description = "An AI redTeaming Python library named Aixploit"
+authors = [{ name = "aintrust", email = "contact@aintrust.ai" }]
+license = { text = "GPL-3.0" }
+readme = "README.md"
+keywords = ["AI", "redteaming", "AI redteaming", "AI redteam", "AI redteaming library", "AI redteam library", "LLM", "LLMs"]
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "openai",
+    "logging"
+]
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"

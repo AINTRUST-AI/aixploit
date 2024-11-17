@@ -1,22 +1,18 @@
-# setup.py
 from setuptools import setup, find_packages
 
 setup(
     name='aixploit',
-    version='1.0.1',
-    packages=find_packages(),
-    install_requires=[
-        'openai',
-        'logging' 
-    ],
+    packages=find_packages(where='aixploit'),
     description='An AI redTeaming Python library named Aixploit',
     author='aintrust',
     author_email='contact@aintrust.ai',
     url='https://github.com/aintrustai-ai/aixploit',  # Update with your repository URL
-    classifiers=[
-        'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
+    keywords = ["AI", "redteaming", "AI redteaming", "AI redteam", "AI redteaming library", "AI redteam library", "LLM", "LLMs"],  # Added missing closing bracket
+
+    classifiers = [
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",  # Updated classifier
+        "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
 )
