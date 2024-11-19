@@ -1,5 +1,6 @@
 
 from openai import OpenAI  # Ensure you have the OpenAI library installed
+import tiktoken 
 
 def prompt_ollama(url: str, model:str, prompt_text: str, api_key: str ) -> str:  # Function to send a prompt to the Ollama API
     # Initialize the OpenAI client with the Ollama API base URL
@@ -19,3 +20,15 @@ def prompt_ollama(url: str, model:str, prompt_text: str, api_key: str ) -> str: 
         result += choice.message.content  # Concatenate the content of each choice
 
     return result  # Return the concatenated result
+
+
+def count_tokens(prompt, response):
+   # Initialize the tokenizer for the specific model you are using
+    # For example, for the 'gpt-3.5-turbo' model:
+    tokenizer = tiktoken.get_encoding("cl100k_base")
+    prompt_tokens = len(tokenizer.encode(prompt))
+
+    completion_tokens = len(tokenizer.encode(response))
+    total_tokens = prompt_tokens + completion_tokens  # Total tokens used in the call
+
+    return prompt_tokens, completion_tokens, total_tokens

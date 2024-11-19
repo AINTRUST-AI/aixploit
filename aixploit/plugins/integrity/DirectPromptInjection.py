@@ -7,7 +7,7 @@ from ...instrumentalize.openai import validation_prompt_openai
 from datetime import datetime  # Make sure to import datetime at the top of your file
 
 from ...instrumentalize.ollama import prompt_ollama
-from ...instrumentalize.openai import prompt_openai  
+from ...instrumentalize.openai import prompt_openai, count_tokens, calculate_cost
 #logging.basicConfig(level=logging.DEBUG)  # Set the logging level
 logging.basicConfig(level=logging.INFO)  # Set the logging level
 LOGGER = logging.getLogger(__name__)  # Create a logger for this module
@@ -23,8 +23,10 @@ class PromptInjection(Attacker):
     """
 
     def __init__(self, scan_type: str):  # {{ edit_1 }}
-        self.results = [] # Initialize results
-        self.successful_prompt_injections = []  # Store the successfull promptinjection source  
+        self.results = [] # Initialize results as an empty list
+        self.successful_prompt_injections = []  # Store the successfull promptinjection source 
+        self.total_tokens = 0 # Initialize total tokens
+        self.total_cost = 0.0 # Initialize total cost   
         self.scan_type = scan_type # 'file' or 'db'
        
 
@@ -81,14 +83,23 @@ class PromptInjection(Attacker):
     # Pl
     # ay each prompt on the specified URL
         for prompt in (prompts):
-             # Ensure no leading/trailing spaces
+            total_tokens=0 # Initialize total tokens
             provider_functions = {  # {{ edit_7 }}
                 "ollama": lambda: prompt_ollama(url, model, prompt, api_key),
-                "openai": lambda: prompt_openai(url, model, prompt, api_key )  # Ensure parameters are correct
+                "openai": lambda: prompt_openai(url, model, prompt, api_key ),
+               
+              # Ensure parameters are correct
             }
             # Get the response using the provider functions or handle unsupported API types
             try:
                 response = provider_functions.get(provider.lower(), lambda: "Default Unsupported API type")()  # Call the corresponding function or return default
+                if provider.lower() == "openai":
+                    prompt_tokens, completion_tokens, total_tokens = count_tokens(prompt, response)  
+                    cost_prompt_tokens, cost_completion_tokens = calculate_cost(model, prompt_tokens, completion_tokens)
+                    total_cost = cost_prompt_tokens + cost_completion_tokens
+                    self.total_tokens += total_tokens
+                    self.total_cost += total_cost
+                 
                 #LOGGER.info(f"Calling provider with parameters: provider={provider}, model={model}, prompt={prompt}, api_key={api_key}")
                 attack_success, confidence_score = self.verify_attack_success(prompt,response)
                 if attack_success:
@@ -117,7 +128,7 @@ class PromptInjection(Attacker):
                 output_file.write(f"prompt: {prompt}\nresponse: {response}\n@@@@@@@@@@@@@@@\n")  # Write to the file
         
         #LOGGER.info("Attack completed with a success rate of %s", success_rate)
-        return self.results, self.successful_prompt_injections, success_rate # Return the conversation, successfull promptinjections with confidence score and success rate for the attack
+        return self.results, self.successful_prompt_injections, success_rate, self.total_tokens, self.total_cost # Return the conversation, successfull promptinjections with confidence score and success rate for the attack
 
     def verify_attack_success(self, prompt, response):
         # Call ChatGPT to validate if the response indicates a successful attack

@@ -1,6 +1,8 @@
 
 from openai import OpenAI  # Ensure you have the OpenAI library installed
 
+import tiktoken  # Import the tiktoken library
+
 def prompt_openai( url: str ,model:str, prompt_text: str, api_key: str) -> str:  # Function to send a prompt to the Ollama API
     # Initialize the OpenAI client with the Ollama API base URL
     client = OpenAI( # OpenaI API base URL
@@ -38,4 +40,26 @@ def validation_prompt_openai(prompt, response, api_key, model):
         result += choice.message.content  # Concatenate the content of each choice
 
     return result  # Return the concatenated result
-  
+
+def count_tokens(prompt, response):
+   # Initialize the tokenizer for the specific model you are using
+    # For example, for the 'gpt-3.5-turbo' model:
+    tokenizer = tiktoken.get_encoding("cl100k_base")
+    prompt_tokens = len(tokenizer.encode(prompt))
+
+    completion_tokens = len(tokenizer.encode(response))
+    total_tokens = prompt_tokens + completion_tokens  # Total tokens used in the call
+
+    return prompt_tokens, completion_tokens, total_tokens
+
+def calculate_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
+    #https://openai.com/api/pricing/
+    if model == "gpt-4o-mini":
+        cost_per_prompt_tokens   = 250/10000000
+        cost_per_completion_tokens = 250/10000000
+    else:
+        cost_per_prompt_tokens   = 100/10000000
+        cost_per_completion_tokens = 100/10000000
+      # Example cost per token for the OpenAI API
+    return prompt_tokens * cost_per_prompt_tokens, completion_tokens * cost_per_completion_tokens 
+    

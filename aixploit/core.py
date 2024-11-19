@@ -64,14 +64,18 @@ def run(
     attack_prompts_full = [] # Initialize an empty list to store all conversations
     successful_attack_prompts_full = [] # Initialize an empty list to store successfull malicious prompts
     success_rates_full = [] # Initialize an empty list to store success rates for each attacker
+    total_tokens_full = [] # Initialize an empty list to store total tokens for each attacker
+    total_cost_full = [] # Initialize an empty list to store total cost for each attacker
     for attacker in attackers: # Initialize an empty list to store success rates for each attacker
         start_time_attacker = time.time() # Start timer for the current attacker
         
         if hasattr(attacker, 'run'): # Check if the attacker has the 'run' method
-            attack_prompts,malicious_prompts, success_rate = attacker.run(target,api_key) # Run the attacker and return the conversation, successfull malicious prompts and the success rate
+            attack_prompts,malicious_prompts, success_rate, total_tokens, total_cost = attacker.run(target,api_key) # Run the attacker and return the conversation, successfull malicious prompts and the success rate
             attack_prompts_full.append(attack_prompts) # Store the conversation of all attackers
             successful_attack_prompts_full.append(malicious_prompts) # Store the successfull malicious prompts of all attackers
             success_rates_full.append(success_rate) # Store the success rate of all attackers
+            total_tokens_full.append(total_tokens) # Store the total tokens of all attackers
+            total_cost_full.append(total_cost) # Store the total cost of all attackers
             # Calculate elapsed time for the current attacker
             elapsed_time_attacker = time.time() - start_time_attacker
         else:
@@ -87,4 +91,4 @@ def run(
     #total_prompts_number = sum(len(sublist) for sublist in attack_prompts_full)
     #LOGGER.info(" Total number of prompts: %s", total_prompts_number) 
     #LOGGER.info(" RedTeaming Task completed: %s attackers, prompts=%s, elapsed_time_seconds=%.6f, with a success rate of %s", len(attackers) , total_prompts_number    , round(elapsed_time, 6), success_rates_percentage)  # {{ edit_1 }}   # Clear the list of prompts after each attacker
-    return attack_prompts_full, successful_attack_prompts_full, success_rates_full
+    return attack_prompts_full, successful_attack_prompts_full, success_rates_full, total_tokens_full, total_cost_full
