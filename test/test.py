@@ -15,7 +15,7 @@ attackers = [
     #PromptInjection("full")
     ]
 
-#conversation, attack_prompts_malicious, success_rates_percentage = run(attackers, target1, os.getenv("OLLAMA_API_KEY"))
+#conversation, attack_prompts_malicious, success_rates_percentage, total_tokens, total_cost = run(attackers, target1, os.getenv("OLLAMA_API_KEY"))
 conversation, attack_prompts_malicious, success_rates_percentage, total_tokens, total_cost = run(attackers, target2, os.getenv("OPENAI_KEY"))
 
 for idx, attacker in enumerate(attackers):  # {{ edit_1 }}
