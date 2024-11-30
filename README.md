@@ -43,7 +43,7 @@ The full list of attackers is available in the plugins folder.
     ] 
    ```
 
-4. you can run the attack with the command:
+4. you can find/run a test attack with the command:
    ```bash
    python test/test.py
    ```
