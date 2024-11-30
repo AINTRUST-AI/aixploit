@@ -24,7 +24,7 @@ print("Redteaming exercise started at : ", start_time.strftime("%H:%M:%S"))
 # conversation, attack_prompts_malicious, success_rates_percentage, total_tokens, total_cost = run(attackers, target1, os.getenv("OLLAMA_API_KEY"))
 (
     conversation,
-    attack_prompts_malicious,
+    attack_prompts,
     success_rates_percentage,
     total_tokens,
     total_cost,
@@ -37,7 +37,7 @@ for idx, attacker in enumerate(attackers):  # {{ edit_1 }}
         print(
             f" \U00002705  Number of prompts tested for attacker {idx + 1}: {len(prompts)}"
         )  # {{ edit_2 }}
-        malicious_prompts = attack_prompts_malicious[idx]
+        malicious_prompts = attack_prompts[idx]
         print(
             f" \U00002705  Number of successful prompts for attacker {idx + 1}: {len(malicious_prompts)}"
         )
