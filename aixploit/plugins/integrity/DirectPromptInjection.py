@@ -111,8 +111,7 @@ class PromptInjection(Attacker):
                  
                 #LOGGER.info(f"Calling provider with parameters: provider={provider}, model={model}, prompt={prompt}, api_key={api_key}")
                 progress_percentage = (index + 1) / total_prompts * 100 if total_prompts > 0 else 0  # Calculate percentage
-                print(f"Processing prompt {index + 1} of {total_prompts} ({progress_percentage:.2f}%)")  # Show the current prompt number and percentage
-    
+                print(f"\rProcessing prompt {index + 1} of {total_prompts} ({(index + 1) / total_prompts * 100 if total_prompts > 0 else 0:.2f}%)", end='')
    
                 attack_success, confidence_score = self.verify_attack_success(prompt,response)
                 if attack_success:

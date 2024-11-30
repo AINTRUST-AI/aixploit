@@ -38,7 +38,7 @@ for idx, attacker in enumerate(attackers):  # {{ edit_1 }}
         print(f' \U0000274C  Total cost for attacker {idx + 1}: {total_cost[idx]:.2f} USD' )
         print('--------------------------------')
     except:
-        print(' ⚠️  No conversation found for attacker: ', attacker.__class__.__name__)
+        print(' ⚠️  Error preventing launch of the attack: ', attacker.__class__.__name__)
 
 print('Redteaming exercise ended at : ', datetime.now().strftime("%H:%M:%S"))
 print('Total time taken: ', datetime.now() - start_time)
