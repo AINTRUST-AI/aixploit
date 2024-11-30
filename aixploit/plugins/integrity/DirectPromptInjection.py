@@ -133,8 +133,8 @@ class PromptInjection(Attacker):
             self.results.append((prompt, response))
         success_rate = successful_prompts / total_prompts if total_prompts > 0 else 0.0
 
-        self.save_results_to_file('attack_responses/integrity/DirectPromptInjection')  # {{ edit_2 }} 
-        #LOGGER.info("Attack completed with a success rate of %s", success_rate)
+        #self.save_results_to_file('attack_responses/integrity/DirectPromptInjection')  # If you want to save the results to a file
+  
         return self.results, self.successful_prompt_injections, success_rate, self.total_tokens, self.total_cost # Return the conversation, successfull promptinjections with confidence score and success rate for the attack
 
     def verify_attack_success(self, prompt, response):
