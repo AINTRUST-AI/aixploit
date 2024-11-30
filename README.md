@@ -53,10 +53,11 @@ To get started with AIxploit download the package:
 pip install aixploit
 ```
 and set the environment variables:
-
+```bash
    export OPENAI_KEY="sk-xxxxx"
    export OLLAMA_URL="hxxp:"
    export OLLAMA_API_KEY="ollama"
+```
 
 ## Usage
 
