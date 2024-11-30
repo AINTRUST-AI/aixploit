@@ -17,7 +17,6 @@ attackers = [
     # PromptInjection("full")
 ]
 
-
 start_time = datetime.now()
 print("Redteaming exercise started at : ", start_time.strftime("%H:%M:%S"))
 
