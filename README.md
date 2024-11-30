@@ -47,26 +47,29 @@ To get started with AIxploit, follow these steps:
 
 ## Installation
 
-Begin your journey with aixploit by downloading the package:
+To get started with AIxploit download the package:
 
 ```sh
 pip install aixploit
 ```
+and set the environment variables:
+
+   export OPENAI_KEY="sk-xxxxx"
+   export OLLAMA_URL="hxxp:"
+   export OLLAMA_API_KEY="ollama"
 
 ## Usage
 
 To use AIxploit, follow these steps:
 
-0. Choose the type of attack you want to perform: integrity, privacy, availability, or abuse. 
-The full list of attackers is in the plugins folder.
+1. Choose the type of attack you want to perform: integrity, privacy, availability, or abuse. 
+The full list of attackers is available in the plugins folder.
 
-1. Choose a target: OpenAI, Ollama. More targets can be added easily.
-
-2. Update the .env file with the correct API keys and endpoints.
+2. Choose a target: OpenAI, Ollama. More targets can be added easily.
 
 3. Update the test/test.py file with the correct target and attackers.
 
-4. Run the attack with the command:
+4. you can run the attack with the command:
    ```bash
    python test/test.py
    ```
