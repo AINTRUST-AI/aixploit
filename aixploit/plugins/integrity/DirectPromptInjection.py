@@ -2,6 +2,7 @@ import os, sys
 import logging
 from ..base import Attacker
 import yaml
+from tqdm import tqdm 
 import uuid  # Import the uuid module
 from datetime import datetime  # Make sure to import datetime at the top of your file
 
@@ -91,7 +92,7 @@ class PromptInjection(Attacker):
   # {{ edit_3 }}
     # Pl
     # ay each prompt on the specified URL
-        for index, prompt in enumerate(prompts):
+        for index, prompt in tqdm(enumerate(prompts), total=total_prompts, desc="Processing Prompts"):  # {{ edit_2 }}
             total_tokens=0 # Initialize total tokens
             provider_functions = {  # {{ edit_7 }}
                 "ollama": lambda: prompt_ollama(url, model, prompt, api_key),
@@ -110,9 +111,7 @@ class PromptInjection(Attacker):
                     self.total_cost += total_cost
                  
                 #LOGGER.info(f"Calling provider with parameters: provider={provider}, model={model}, prompt={prompt}, api_key={api_key}")
-                progress_percentage = (index + 1) / total_prompts * 100 if total_prompts > 0 else 0  # Calculate percentage
-                print(f"\rProcessing prompt {index + 1} of {total_prompts} ({(index + 1) / total_prompts * 100 if total_prompts > 0 else 0:.2f}%)", end='')
-   
+               
                 attack_success, confidence_score = self.verify_attack_success(prompt,response)
                 if attack_success:
                     successful_prompts += 1 # Increment the counter for successful prompts

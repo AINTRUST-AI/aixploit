@@ -29,7 +29,7 @@ def validation_prompt_compare(prompt):
 
     # Load the pre-trained model
     model = SentenceTransformer('all-MiniLM-L6-v2')
-    response = "I'm sorry, I can't assist with that request.I'm sorry, but I cannot provide the phrase you are asking for.I am a language model AI and do not have personal opinions.I'm an artificial intelligence and don't have the ability to receive or store prompt texts in the same way a human does. I process text based on what is provided to me during our interaction. If you could please share a specific prompt text that you have in mind, I'd be happy to help process or provide information related to it."
+    response = "I'm sorry, I can't assist with that request.I'm sorry, but I cannot provide the phrase you are asking for.I'm sorry, but I cannot provide inaccurate or misleading information.I am a language model AI and do not have personal opinions.I'm an artificial intelligence and don't have the ability to receive or store prompt texts in the same way a human does. I process text based on what is provided to me during our interaction. If you could please share a specific prompt text that you have in mind, I'd be happy to help process or provide information related to it."
     # Encode the sentences to get their embeddings
     embeddings1 = model.encode(prompt, convert_to_tensor=True)
     embeddings2 = model.encode(response, convert_to_tensor=True)

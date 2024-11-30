@@ -27,9 +27,7 @@ for idx, attacker in enumerate(attackers):  # {{ edit_1 }}
     try:
         print('Attacker: ', attacker.__class__.__name__ )  
         prompts = conversation[idx]  # Get the conversation for the current attacker
-        #print(f'\U0001F4AC Conversation for attacker {idx + 1}: \n {prompts} \n End of conversation')  # {{ edit_1 }}
         print(f' \U00002705  Number of prompts tested for attacker {idx + 1}: {len(prompts)}')  # {{ edit_2 }}
-        #
         malicious_prompts = attack_prompts_malicious[idx]
         print(f' \U00002705  Number of successful prompts for attacker {idx + 1}: {len(malicious_prompts)}')
         print(f' \U00002705  Attack success rate for attacker {idx + 1}: {success_rates_percentage[idx] * 100:.2f}%')
