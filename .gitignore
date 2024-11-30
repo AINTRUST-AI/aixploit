@@ -25,6 +25,7 @@ __pycache__/
 dist/
 build/
 out/
+attack_responses/
 testaba.py
 # IDE/Editor Specific Files
 .idea/
