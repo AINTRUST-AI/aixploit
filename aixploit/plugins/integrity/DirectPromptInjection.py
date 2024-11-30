@@ -3,11 +3,12 @@ import logging
 from ..base import Attacker
 import yaml
 import uuid  # Import the uuid module
-from ...instrumentalize.validation import validation_prompt_openai
 from datetime import datetime  # Make sure to import datetime at the top of your file
 
 from ...instrumentalize.ollama import prompt_ollama
 from ...instrumentalize.openai import prompt_openai, count_tokens, calculate_cost
+from ...instrumentalize.validation import validation_prompt_openai
+
 #logging.basicConfig(level=logging.DEBUG)  # Set the logging level
 logging.basicConfig(level=logging.INFO)  # Set the logging level
 LOGGER = logging.getLogger(__name__)  # Create a logger for this module

@@ -1,5 +1,4 @@
-
-from openai import OpenAI  # Ensure you have the OpenAI library installed
+from openai import OpenAI
 
 def validation_prompt_openai(prompt, response, api_key, model):
 
