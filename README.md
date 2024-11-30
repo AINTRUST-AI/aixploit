@@ -45,6 +45,14 @@ To get started with AIxploit, follow these steps:
    pip install -r requirements.txt
    ```
 
+## Installation
+
+Begin your journey with aixploit by downloading the package:
+
+```sh
+pip install aixploit
+```
+
 ## Usage
 
 To use AIxploit, follow these steps:
