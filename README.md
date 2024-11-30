@@ -86,7 +86,7 @@ The full list of attackers is available in the plugins folder.
    ```bash
    python test/test.py
    ```
-5. The attack results will be returned automatically with valuable metrics.
+5. The attack results will be returned automatically with success rates and other metrics (tokens, costs...).
 
 ## Contributing
 
