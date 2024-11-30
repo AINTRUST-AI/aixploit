@@ -65,16 +65,28 @@ To use AIxploit, follow these steps:
 
 1. Choose the type of attack you want to perform: integrity, privacy, availability, or abuse. 
 The full list of attackers is available in the plugins folder.
-
+```bash
+   from aixploit.plugins import PromptInjection
+```
 2. Choose a target: OpenAI, Ollama. More targets can be added easily.
+   ```bash
+   target1 = ["Ollama", "http://localhost:11434/v1", "mistral"]
+   ```
 
 3. Update the test/test.py file with the correct target and attackers.
+   ```bash
+   target1 = ["Ollama", "http://localhost:11434/v1", "mistral"]
+   attackers = [
+    PromptInjection("quick"),
+
+    ] 
+   ```
 
 4. you can run the attack with the command:
    ```bash
    python test/test.py
    ```
-5. The attack results will be returned automatically and the conversation will be stored in the attack_responses folder.
+5. The attack results will be returned automatically with valuable metrics.
 
 ## Contributing
 
