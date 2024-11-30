@@ -3,7 +3,7 @@ import logging
 from ..base import Attacker
 import yaml
 import uuid  # Import the uuid module
-from ...instrumentalize.openai import validation_prompt_openai
+from ...instrumentalize.validation import validation_prompt_openai
 from datetime import datetime  # Make sure to import datetime at the top of your file
 
 from ...instrumentalize.ollama import prompt_ollama
