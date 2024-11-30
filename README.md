@@ -1,5 +1,6 @@
 # AIxploit
 
+[![PyPI - Python Version](https://img.shields.io/pypi/v/aixploit)](https://pypi.org/project/aixploit)
 [![Downloads](https://static.pepy.tech/badge/aixploit)](https://pepy.tech/project/aixploit)
 [![Downloads](https://static.pepy.tech/badge/aixploit/month)](https://pepy.tech/project/aixploit)
 

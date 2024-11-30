@@ -1,10 +1,11 @@
 import abc
 from typing import Protocol
 
+
 class Attacker(Protocol):
     """
     Attacker protocol that defines the interface for attackers.
- """
+    """
 
     @abc.abstractmethod
     def run(self, target: list[str], api_key: str) -> tuple[str, str, float]:

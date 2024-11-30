@@ -16,6 +16,7 @@ dependencies = [
     "annotated-types==0.7.0",
     "anyio==4.6.2.post1",
     "backports.tarfile==1.2.0",
+    "black==24.8.0",
     "certifi==2024.8.30",
     "charset-normalizer==3.4.0",
     "distro==1.9.0",
@@ -63,3 +64,6 @@ dependencies = [
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
+
+[tool.black]
+line-length = 88  # You can adjust this value as needed
