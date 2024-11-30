@@ -1,5 +1,6 @@
 # AIxploit
-![PyPI Downloads](https://static.pepy.tech/badge/aixploit)
+
+[![Downloads](https://static.pepy.tech/badge/aixploit)](https://pepy.tech/project/aixploit)
 [![Downloads](https://static.pepy.tech/badge/aixploit/month)](https://pepy.tech/project/aixploit)
 
 
