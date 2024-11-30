@@ -57,7 +57,7 @@ The full list of attackers is available in the plugins folder.
 
 Example:
 ```bash
-   import sys, os
+import sys, os
 from datetime import datetime
 
 sys.path.append(
@@ -67,27 +67,24 @@ from aixploit.plugins import PromptInjection
 from aixploit.core import run
 
 
-target1 = ["Ollama", "http://localhost:11434/v1", "mistral"]
-target2 = ["Openai", "", "gpt-3.5-turbo"]
+target = ["Openai", "", "gpt-3.5-turbo"]
 
 
 attackers = [
     PromptInjection("quick"),
-    # PromptInjection("full")
 ]
 
 
 start_time = datetime.now()
 print("Redteaming exercise started at : ", start_time.strftime("%H:%M:%S"))
 
-# conversation, attack_prompts_malicious, success_rates_percentage, total_tokens, total_cost = run(attackers, target1, os.getenv("OLLAMA_API_KEY"))
 (
     conversation,
     attack_prompts_malicious,
     success_rates_percentage,
     total_tokens,
     total_cost,
-) = run(attackers, target2, os.getenv("OPENAI_KEY"))
+) = run(attackers, target, os.getenv("OPENAI_KEY"))
 
 for idx, attacker in enumerate(attackers):  # {{ edit_1 }}
     try:
