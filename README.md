@@ -17,7 +17,7 @@ It is designed to be used by AI security researchers and RedTeams  to test the s
 To get started with AIxploit download the package:
 
 ```sh
-pip install aixploit
+   pip install aixploit
 ```
 and set the environment variables:
 ```bash
