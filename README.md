@@ -55,26 +55,19 @@ The full list of attackers is available in the plugins folder.
 
 5. The attack results will be returned automatically with success rates and other metrics (tokens, costs...).
 
-Example:
+Example test.py:
 ```bash
-import sys, os
+import os
 from datetime import datetime
-
-sys.path.append(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-)  # Automatically detect the current folder # Adjust this path as necessary
 from aixploit.plugins import PromptInjection
 from aixploit.core import run
 
 
 target = ["Openai", "", "gpt-3.5-turbo"]
-
-
 attackers = [
-    PromptInjection("quick"), # quick, full
-    #PromptInjection("full"),
+    PromptInjection("quick"),
+    # PromptInjection("full")
 ]
-
 
 start_time = datetime.now()
 print("Redteaming exercise started at : ", start_time.strftime("%H:%M:%S"))
