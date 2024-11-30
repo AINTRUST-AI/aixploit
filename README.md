@@ -71,7 +71,8 @@ target = ["Openai", "", "gpt-3.5-turbo"]
 
 
 attackers = [
-    PromptInjection("quick"),
+    PromptInjection("quick"), # quick, full
+    #PromptInjection("full"),
 ]
 
 
