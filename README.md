@@ -2,9 +2,9 @@
 
 
 [![Downloads](https://static.pepy.tech/badge/aixploit)](https://pepy.tech/project/aixploit)
-[![Downloads](https://static.pepy.tech/badge/aixploit/month)](https://pepy.tech/project/aixploit)
 [![PyPI - Python Version](https://img.shields.io/pypi/v/aixploit)](https://pypi.org/project/aixploit)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Downloads](https://static.pepy.tech/badge/aixploit/month)](https://pepy.tech/project/aixploit)
 
 AIxploit is a powerful tool designed for analyzing and exploiting vulnerabilities in AI systems. 
 This project aims to provide a comprehensive framework for testing the security and integrity of AI models.
