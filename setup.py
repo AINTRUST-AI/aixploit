@@ -3,15 +3,13 @@ from setuptools import setup, find_packages
 
 packages = find_packages()
 
-# Print the discovered packages
-print("Discovered packages:", packages)
 setup(
     name="aixploit",
     packages=packages,
-    description="An AI redTeaming Python library named Aixploit",
+    description="AI redTeaming Python library",
     author="aintrust",
     author_email="contact@aintrust.ai",
-    url="https://github.com/AINTRUST-AI/AIxploit",  # Update with your repository URL
+    url="https://github.com/AINTRUST-AI/AIxploit",  
     keywords=[
         "AI",
         "redteaming",
@@ -21,10 +19,12 @@ setup(
         "AI redteam library",
         "LLM",
         "LLMs",
-    ],  # Added missing closing bracket
+        "LLM Guardrails",
+        "LLM Security",
+    ],  
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",  # Updated classifier
+        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",  
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
