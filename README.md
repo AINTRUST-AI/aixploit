@@ -37,12 +37,12 @@ The full list of attackers is available in the plugins folder.
 ```
 2. Choose a target: OpenAI, Ollama. More targets can be added easily.
    ```bash
-   target1 = ["Ollama", "http://localhost:11434/v1", "mistral"]
+   target = ["Ollama", "http://localhost:11434/v1", "mistral"]
    ```
 
 3. Update the test/test.py file with the correct target and attackers.
    ```bash
-   target1 = ["Ollama", "http://localhost:11434/v1", "mistral"]
+   target = ["Ollama", "http://localhost:11434/v1", "mistral"]
    attackers = [
     PromptInjection("quick"),
     ] 
