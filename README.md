@@ -32,10 +32,10 @@ To use AIxploit, follow these steps:
 
 1. Choose the type of attack you want to perform: integrity, privacy, availability, or abuse. 
 The full list of attackers is available in the plugins folder.
-```bash
+   ```bash
    from aixploit.plugins import PromptInjection
-```
-2. Choose a target and an attacker.
+   ```
+2. Choose your targets and the associated attackers.
    ```bash
    target = ["Ollama", "http://localhost:11434/v1", "mistral"]
    attackers = [
