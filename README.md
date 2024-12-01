@@ -35,25 +35,19 @@ The full list of attackers is available in the plugins folder.
 ```bash
    from aixploit.plugins import PromptInjection
 ```
-2. Choose a target: OpenAI, Ollama. More targets can be added easily.
-   ```bash
-   target = ["Ollama", "http://localhost:11434/v1", "mistral"]
-   ```
-
-3. Update the test/test.py file with the correct target and attackers.
+2. Choose a target and an attacker.
    ```bash
    target = ["Ollama", "http://localhost:11434/v1", "mistral"]
    attackers = [
-    PromptInjection("quick"),
-    ] 
+   PromptInjection("quick"),
+   ] 
    ```
 
-4. you can run an attack with the command:
+3. Run your attack and analyze the results:
    ```bash
    run(attackers, target, os.getenv("OPENAI_KEY")
    ```
 
-5. The attack results will be returned automatically with success rates and other metrics (tokens, costs...).
 
 Example test.py:
 ```bash
