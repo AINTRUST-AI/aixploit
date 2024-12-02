@@ -51,7 +51,7 @@ The full list of attackers is available in the plugins folder.
 
 Example test.py:
 
-    ```bash
+```bash
 
     import os
     from datetime import datetime
@@ -60,13 +60,13 @@ Example test.py:
 
 
     target = ["Openai", "", "gpt-3.5-turbo"]
-    attackers = [
+    attackers = [   
         Privacy("quick"),
         Integrity("quick"),
         Availability("quick"),
         Abuse("quick"),
-        # PromptInjection("quick"),
-        # PromptInjection("full")
+        #PromptInjection("quick"),
+        #PromptInjection("full")
     ]
 
     start_time = datetime.now()
@@ -113,7 +113,7 @@ Example test.py:
     print("Redteaming exercise ended at : ", datetime.now().strftime("%H:%M:%S"))
     print("Total time taken: ", datetime.now() - start_time)
 
-    ```
+```
 
 ## Contributing
 
