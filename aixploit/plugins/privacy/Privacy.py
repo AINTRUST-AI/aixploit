@@ -51,9 +51,10 @@ class Privacy(Attacker):
                 return [
                     item.get("prompt", "")
                     for item in data.get("prompt_injections", [])
-                    if "prompt" in item and "privacy" in item.get("types", []) # {{ edit_1 }}
-                ] 
-            
+                    if "prompt" in item
+                    and "privacy" in item.get("types", [])  # {{ edit_1 }}
+                ]
+
                 # Join prompts into a single sentence
             elif self.scan_type.lower() == "full":
                 source = os.path.join(
@@ -68,7 +69,8 @@ class Privacy(Attacker):
                 return [
                     item.get("prompt", "")
                     for item in data.get("prompt_injections", [])
-                    if "prompt" in item and "privacy" in item.get("types", []) # {{ edit_1 }}
+                    if "prompt" in item
+                    and "privacy" in item.get("types", [])  # {{ edit_1 }}
                 ]  # Join prompts into a single sentence
             elif self.scan_type.lower() == "custom":
                 source = os.path.join(
@@ -83,7 +85,8 @@ class Privacy(Attacker):
                 return [
                     item.get("prompt", "")
                     for item in data.get("prompt_injections", [])
-                    if "prompt" in item and "privacy" in item.get("types", []) # {{ edit_1 }}
+                    if "prompt" in item
+                    and "privacy" in item.get("types", [])  # {{ edit_1 }}
                 ]  # Join prompts into a single sentence
 
             elif self.scan_type.lower() == "auto":

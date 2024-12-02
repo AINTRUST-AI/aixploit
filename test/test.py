@@ -6,12 +6,12 @@ from aixploit.core import run
 
 target = ["Openai", "", "gpt-3.5-turbo"]
 attackers = [
-    #PromptInjection("quick"),
+    # PromptInjection("quick"),
     Privacy("quick"),
     Integrity("quick"),
     Availability("quick"),
     Abuse("quick"),
-    #PromptInjection("full")
+    # PromptInjection("full")
 ]
 
 start_time = datetime.now()
