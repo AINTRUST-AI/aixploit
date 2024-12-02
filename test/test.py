@@ -1,12 +1,13 @@
 import os
 from datetime import datetime
-from aixploit.plugins import PromptInjection
+from aixploit.plugins import PromptInjection, Privacy
 from aixploit.core import run
 
 
 target = ["Openai", "", "gpt-3.5-turbo"]
 attackers = [
     PromptInjection("quick"),
+    #Privacy("quick"),
     # PromptInjection("full")
 ]
 
