@@ -51,8 +51,10 @@ class PromptInjection(Attacker):
                 return [
                     item.get("prompt", "")
                     for item in data.get("prompt_injections", [])
-                    if "prompt" in item
-                ]  # Join prompts into a single sentence
+                    if "prompt" in item# {{ edit_1 }}
+                ] 
+            
+                # Join prompts into a single sentence
             elif self.scan_type.lower() == "full":
                 source = os.path.join(
                     os.path.abspath(
