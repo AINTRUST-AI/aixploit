@@ -1,6 +1,6 @@
 [project]
 name = "aixploit"
-version = "1.1.4"
+version = "1.1.5"
 description = "AI redTeaming Python library"
 authors = [{ name = "aintrust", email = "contact@aintrust.ai" }]
 license = { text = "GPL-3.0" }
