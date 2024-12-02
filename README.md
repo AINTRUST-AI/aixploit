@@ -39,13 +39,16 @@ The full list of attackers is available in the plugins folder.
    ```bash
    target = ["Ollama", "http://localhost:11434/v1", "mistral"]
    attackers = [
-   PromptInjection("quick"),
+        Privacy("quick"),
+        Integrity("quick"),
+        Availability("quick"),
+        Abuse("quick"),
    ] 
    ```
 
 3. Run your attack and analyze the results:
    ```bash
-   run(attackers, target, os.getenv("OPENAI_KEY")
+   run(attackers, target, os.getenv("OLLAMA_API_KEY"))
    ```
 
 
