@@ -1,7 +1,10 @@
 """Plugins init"""
 
 from .integrity.DirectPromptInjection import PromptInjection
-from .privacy.SensitiveData import Privacy
+from .integrity.Integrity import Integrity
+from .availability.Availability import Availability
+from .privacy.Privacy import Privacy
+from .abuse.Abuse import Abuse
 # from .integrity.IndirectPromptInjection import IndirectPromptInjector, SingleIndirectPromptInjector
 # from .integrity.Language import LanguageInjector, SingleLanguageInjector
 # from .integrity.Code import CodeInjector, SingleCodeInjector
@@ -15,7 +18,10 @@ from .privacy.SensitiveData import Privacy
 
 __all__ = [
     "PromptInjection",
+    "Integrity",
+    "Availability",
     "Privacy",
+    "Abuse",
     # "IndirectPromptInjector",
     # "SingleIndirectPromptInjector",
     # "CompetitorInjector",

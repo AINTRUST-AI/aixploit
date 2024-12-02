@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO)  # Set the logging level
 LOGGER = logging.getLogger(__name__)  # Create a logger for this module
 
 
-class Privacy(Attacker):
+class Integrity(Attacker):
     """
     This plugin is responsible for launching prompt injection attacks in a standalone mode,
     you need to provide a scan type as input and the attacker will load a corresponding YAML file
@@ -51,7 +51,7 @@ class Privacy(Attacker):
                 return [
                     item.get("prompt", "")
                     for item in data.get("prompt_injections", [])
-                    if "prompt" in item and "privacy" in item.get("types", []) # {{ edit_1 }}
+                    if "prompt" in item and "integrity" in item.get("types", [])# {{ edit_1 }}
                 ] 
             
                 # Join prompts into a single sentence
@@ -68,7 +68,7 @@ class Privacy(Attacker):
                 return [
                     item.get("prompt", "")
                     for item in data.get("prompt_injections", [])
-                    if "prompt" in item
+                    if "prompt" in item and "integrity" in item.get("types", [])# {{ edit_1 }}
                 ]  # Join prompts into a single sentence
             elif self.scan_type.lower() == "custom":
                 source = os.path.join(
@@ -83,7 +83,7 @@ class Privacy(Attacker):
                 return [
                     item.get("prompt", "")
                     for item in data.get("prompt_injections", [])
-                    if "prompt" in item
+                    if "prompt" in item and "integrity" in item.get("types", [])# {{ edit_1 }}
                 ]  # Join prompts into a single sentence
 
             elif self.scan_type.lower() == "auto":
