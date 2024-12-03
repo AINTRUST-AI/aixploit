@@ -40,9 +40,9 @@ The full list of attackers is available in the plugins folder.
    target = ["Ollama", "http://localhost:11434/v1", "mistral"]
    attackers = [
         Privacy("quick"),
-        Integrity("quick"),
+        Integrity("full"),
         Availability("quick"),
-        Abuse("quick"),
+        Abuse("custom"),
    ] 
    ```
 
