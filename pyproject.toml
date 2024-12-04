@@ -1,6 +1,6 @@
 [project]
 name = "aixploit"
-version = "1.2.2"
+version = "1.2.4"
 description = "AI redTeaming Python library"
 authors = [{ name = "aintrust", email = "contact@aintrust.ai" }]
 license = { text = "GPL-3.0" }
@@ -17,7 +17,9 @@ dependencies = [
     "tiktoken==0.8.0",
     "sentence-transformers==3.3.1",
     "pyyaml==6.0.2",
-    "tqdm==4.66.6", 
+    "tqdm==4.66.6",
+    "numpy==2.0.1",
+
 ]
 
 [tool.poetry.dev-dependencies]
