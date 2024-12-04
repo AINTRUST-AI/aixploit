@@ -24,4 +24,4 @@ dependencies = [
 pytest = "^6.2.4"
 
 [tool.black]
-line-length = 88  # You can adjust this value as needed
+line-length = 88 
