@@ -41,4 +41,5 @@ coverage/
 # Temporary Files
 *.tmp
 *.bkp
+*.wip
 

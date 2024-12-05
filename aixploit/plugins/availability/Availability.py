@@ -48,12 +48,19 @@ class Availability(Attacker):
                 with open(source, "r") as file:
                     data = yaml.safe_load(file)
                 # Extract prompts and payloads
-                return [
-                    item.get("prompt", "")
+                prompts_with_severity = [
+                    (item.get("prompt", ""), item.get("severity", "unknown"))  # {{ edit_1 }}
                     for item in data.get("prompt_injections", [])
                     if "prompt" in item
                     and "availability" in item.get("types", [])  # {{ edit_1 }}
                 ]
+                # Create separate lists for prompts and severities
+                prompts = []
+                severities = []
+                for prompt, severity in prompts_with_severity:
+                    prompts.append(prompt)  # Add prompt to the prompts list
+                    severities.append(severity[0] if isinstance(severity, list) else severity)  # Add severity to the severities list
+                return prompts, severities  # Return both lists
 
                 # Join prompts into a single sentence
             elif self.scan_type.lower() == "full":
@@ -66,12 +73,21 @@ class Availability(Attacker):
                 with open(source, "r") as file:
                     data = yaml.safe_load(file)
                 # Extract prompts and payloads
-                return [
-                    item.get("prompt", "")
+                prompts_with_severity = [
+                    (item.get("prompt", ""), item.get("severity", "unknown"))  # {{ edit_1 }}
                     for item in data.get("prompt_injections", [])
                     if "prompt" in item
                     and "availability" in item.get("types", [])  # {{ edit_1 }}
-                ]  # Join prompts into a single sentence
+                ]
+                # Create separate lists for prompts and severities
+                prompts = []
+                severities = []
+                for prompt, severity in prompts_with_severity:
+                    prompts.append(prompt)  # Add prompt to the prompts list
+                    severities.append(severity)  # Add severity to the severities list
+                return prompts, severities  # Return both lists$
+            
+
             elif self.scan_type.lower() == "custom":
                 source = os.path.join(
                     os.path.abspath(
@@ -82,12 +98,19 @@ class Availability(Attacker):
                 with open(source, "r") as file:
                     data = yaml.safe_load(file)
                 # Extract prompts and payloads
-                return [
-                    item.get("prompt", "")
+                prompts_with_severity = [
+                    (item.get("prompt", ""), item.get("severity", "unknown"))  # {{ edit_1 }}
                     for item in data.get("prompt_injections", [])
                     if "prompt" in item
                     and "availability" in item.get("types", [])  # {{ edit_1 }}
-                ]  # Join prompts into a single sentence
+                ]
+                # Create separate lists for prompts and severities
+                prompts = []
+                severities = []
+                for prompt, severity in prompts_with_severity:
+                    prompts.append(prompt)  # Add prompt to the prompts list
+                    severities.append(severity)  # Add severity to the severities list
+                return prompts, severities  # Return both lists
 
             elif self.scan_type.lower() == "auto":
                 exit(
@@ -123,20 +146,22 @@ class Availability(Attacker):
         if url.strip() == "" and provider.lower() != "openai":
             return "Url is empty", True, -1.0
         else:
-            prompts = self.get_prompts()
-            if prompts is None or not isinstance(prompts, list):  # {{ edit_1 }}
-                LOGGER.error(
-                    "Prompts list is not a valid list. Received: %s", prompts
-                )  # Log the error
-                prompts = []  # Initialize to an empty list if not valid
+            prompts, severities = self.get_prompts()  # {{ edit_2 }}
+            if prompts is None or not isinstance(prompts, list):  # {{ edit_3 }}
+                LOGGER.error("Prompts list is not a valid list. Received: %s", prompts)  # Log the error
+                return "No valid prompts found", True, -1.0  # Early exit if prompts are invalid
+
+  
+
+
             total_prompts = len(prompts)
             successful_prompts = 0  # Counter for successful prompts
         # {{ edit_3 }}
         # Pl
         # ay each prompt on the specified URL
-        for index, prompt in tqdm(
-            enumerate(prompts), total=total_prompts, desc="Processing Prompts"
-        ):  # {{ edit_2 }}
+        for index, (prompt, severity) in tqdm(  # {{ edit_1 }}
+            enumerate(zip(prompts, severities)), total=total_prompts, desc="Processing Prompts"
+        ):  
             total_tokens = 0  # Initialize total tokens
             provider_functions = {  # {{ edit_7 }}
                 "ollama": lambda: prompt_ollama(url, model, prompt, api_key),
@@ -169,7 +194,7 @@ class Availability(Attacker):
                         1  # Increment the counter for successful prompts
                     )
                     self.successful_prompt_injections.append(
-                        (prompt, response, confidence_score)
+                        (prompt, response, confidence_score, severity)
                     )  # Store the successfull promptinjection source and the confidence score when avaialble
                     # LOGGER.info("Attack succeded", self.successful_prompt_injections)
                 else:
