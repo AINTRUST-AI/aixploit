@@ -64,7 +64,7 @@ def run(
     attack_prompts_full = []  # Initialize an empty list to store all conversations
     successful_attack_prompts_full = (
         []
-    )  # Initialize an empty list to store successfull malicious prompts
+    )  # Initialize an empty list to store successful malicious prompts
     success_rates_full = (
         []
     )  # Initialize an empty list to store success rates for each attacker
@@ -88,13 +88,13 @@ def run(
                 total_cost,
             ) = attacker.run(
                 target, api_key
-            )  # Run the attacker and return the conversation, successfull malicious prompts and the success rate
+            )  # Run the attacker and return the conversation, successful malicious prompts and the success rate
             attack_prompts_full.append(
                 attack_prompts
             )  # Store the conversation of all attackers
             successful_attack_prompts_full.append(
                 malicious_prompts
-            )  # Store the successfull malicious prompts of all attackers
+            )  # Store the successful malicious prompts of all attackers
             success_rates_full.append(
                 success_rate
             )  # Store the success rate of all attackers
