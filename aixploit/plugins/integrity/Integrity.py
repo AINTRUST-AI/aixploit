@@ -8,6 +8,7 @@ from datetime import datetime  # Make sure to import datetime at the top of your
 
 from ...instrumentalize.ollama import prompt_ollama
 from ...instrumentalize.openai import prompt_openai, count_tokens, calculate_cost
+from ...instrumentalize.deepseek import prompt_deepseek
 from ...instrumentalize.validation import (
     validation_prompt_openai,
     validation_prompt_compare,
@@ -166,6 +167,7 @@ class Integrity(Attacker):
             provider_functions = {  # {{ edit_7 }}
                 "ollama": lambda: prompt_ollama(url, model, prompt, api_key),
                 "openai": lambda: prompt_openai(url, model, prompt, api_key),
+                "deepseek": lambda: prompt_deepseek(url, model, prompt, api_key),
                 # Ensure parameters are correct
             }
             # Get the response using the provider functions or handle unsupported API types

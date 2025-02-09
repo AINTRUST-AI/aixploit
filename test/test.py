@@ -2,15 +2,26 @@ import os
 from datetime import datetime
 from aixploit.plugins import PromptInjection, Privacy, Integrity, Availability, Abuse
 from aixploit.core import run
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
+openai_api_key = os.getenv("OPENAI_KEY")
+deepseek_api_key = os.getenv("DEEPSEEK_KEY")
+if not openai_api_key:
+    raise ValueError("OPENAI_KEY not found in environment variables")
+if not deepseek_api_key:
+    raise ValueError("DEEPSEEK_KEY not found in environment variables")
 
 
-target = ["Openai", "", "gpt-3.5-turbo"]
+#target = ["Openai", "", "gpt-3.5-turbo"]
+target2 = ["deepseek", os.getenv("DEEPSEEK_URL"), "deepseek-chat"]
+
 attackers = [
-    PromptInjection("quick"),
-    Privacy("quick"),
+    #PromptInjection("quick"),
+    #Privacy("quick"),
     Integrity("quick"),
-    Availability("quick"),
-    Abuse("quick"),
+    #Availability("quick"),
+    #Abuse("quick"),
     # PromptInjection("full")
 ]
 
@@ -23,7 +34,7 @@ print("Redteaming exercise started at : ", start_time.strftime("%H:%M:%S"))
     success_rates_percentage,
     total_tokens,
     total_cost,
-) = run(attackers, target, os.getenv("OPENAI_KEY"))
+) = run(attackers, target2, deepseek_api_key)
 
 for idx, attacker in enumerate(attackers):  # {{ edit_1 }}
     try:
