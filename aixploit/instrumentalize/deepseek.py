@@ -39,8 +39,8 @@ def count_tokens(prompt, response):
 
 
 def calculate_cost(model: str, prompt_tokens: int, completion_tokens: int) -> float:
-    # https://openai.com/api/pricing/
-    if model == "gpt-4o-mini":
+    
+    if model == "deepseek-chat":
         price_per_prompt_tokens = 250 / 10000000
         price_per_completion_tokens = 250 / 10000000
     else:
