@@ -1,12 +1,12 @@
 [project]
 name = "aixploit"
-version = "1.2.7"
+version = "1.2.8.2"
 description = "AI redTeaming Python library"
 authors = [{ name = "aintrust", email = "contact@aintrust.ai" }]
 license = { text = "GPL-3.0" }
 readme = "README.md"
 keywords = ["AI", "redteaming", "AI redteaming", "AI redteam", "AI redteaming library", "AI redteam library","LLM Guardrails", "LLM Security", "LLM", "LLMs"]
-requires-python = ">=3.11"
+requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",

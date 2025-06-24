@@ -27,6 +27,7 @@ build/
 out/
 attack_responses/
 test/test_lib_local.py
+
 # IDE/Editor Specific Files
 .idea/
 .vscode/
@@ -43,3 +44,5 @@ coverage/
 *.bkp
 *.wip
 
+# Ignore all files in the .gitignore directory
+.gitignore
